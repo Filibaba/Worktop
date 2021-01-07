@@ -5,7 +5,7 @@ import PackageDescription
 let package = Package(
   name: "Worktop",
   platforms: [
-    .iOS(.v14)
+    .iOS(.v14),
   ],
   products: [
     .library(name: "Worktop", targets: ["Worktop"]),

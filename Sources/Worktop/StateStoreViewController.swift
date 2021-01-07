@@ -27,16 +27,29 @@ open class StateStoreViewController<State: Equatable, Action>: UIViewController 
     self.store = store
     self.viewStore = ViewStore(store)
     super.init(nibName: nil, bundle: nil)
-    configureStateObservation(on: viewStore)
   }
 
   @available(*, unavailable) public required init?(coder: NSCoder) {
     fatalError("Not implemented")
   }
 
+  // MARK: View Controller Lifecycle
+
+  override public func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    configureStateObservation(on: viewStore)
+  }
+
+  open override func viewDidDisappear(_ animated: Bool) {
+    super.viewDidDisappear(animated)
+    cancellables.removeAll()
+  }
+
   // MARK: Subclass API
 
   /// Override this method to configure state observation.
+  ///
+  /// State configuration happens on `viewWillAppear` and all observations are cleared on `viewDidDisappear`.
   ///
   /// - Parameter viewStore: The view store to observe.
   open func configureStateObservation(on viewStore: ViewStore<State, Action>) { }
