@@ -35,7 +35,7 @@ open class StateStoreViewController<State: Equatable, Action>: UIViewController 
 
   // MARK: View Controller Lifecycle
 
-  override public func viewWillAppear(_ animated: Bool) {
+  open override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     configureStateObservation(on: viewStore)
   }
