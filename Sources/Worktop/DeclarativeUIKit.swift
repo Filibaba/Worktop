@@ -1,14 +1,14 @@
 // For more info read http://blog.eppz.eu/declarative-uikit-with-10-lines-of-code/
 import UIKit
 
-protocol Withable {
+public protocol Withable {
   associatedtype T
 
   @discardableResult func with(_ closure: (_ instance: T) -> Void) -> T
 }
 extension Withable {
 
-  @discardableResult func with(_ closure: (_ instance: Self) -> Void) -> Self {
+  @discardableResult public func with(_ closure: (_ instance: Self) -> Void) -> Self {
     closure(self)
     return self
   }
@@ -18,7 +18,7 @@ extension Withable {
 extension NSObject: Withable { }
 
 
-extension UILabel {
+public extension UILabel {
 
   func with(text: String?) -> Self {
     with {
@@ -28,13 +28,13 @@ extension UILabel {
 
 }
 
-extension UIViewController {
+public extension UIViewController {
   func wrappedInNavigationController() -> UINavigationController {
     UINavigationController(rootViewController: self)
   }
 }
 
-extension UIStackView {
+public extension UIStackView {
 
   func horizontal(spacing: CGFloat = 0) -> Self {
     with {
@@ -57,7 +57,7 @@ extension UIStackView {
 
 }
 
-extension UIFont {
+public extension UIFont {
   class func rounded(ofSize size: CGFloat, weight: UIFont.Weight) -> UIFont {
     let systemFont = UIFont.systemFont(ofSize: size, weight: weight)
     let font: UIFont
