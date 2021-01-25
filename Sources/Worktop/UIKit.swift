@@ -3,7 +3,7 @@ import UIKit
 
 // MARK: - Bar Buttons
 
-extension ViewStore {
+public extension ViewStore {
 
   /// Creates a bar button item with the given properties that triggers the given action when tapped.
   ///
