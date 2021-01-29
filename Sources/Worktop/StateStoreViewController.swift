@@ -5,13 +5,16 @@ import UIKit
 /// Convenience class for view controllers that are powered by state stores.
 open class StateStoreViewController<State: Equatable, Action>: UIViewController {
 
+  public typealias Store = ComposableArchitecture.Store<State, Action>
+  public typealias ViewStore = ComposableArchitecture.ViewStore<State, Action>
+
   // MARK: Properties
 
   /// The store powering the view controller.
-  open var store: Store<State, Action>
+  open var store: Store
 
   /// The view store wrapping the store for the actual view.
-  open var viewStore: ViewStore<State, Action>
+  open var viewStore: ViewStore
 
   /// Keeps track of subscriptions.
   open var cancellables: Set<AnyCancellable> = []
@@ -23,7 +26,7 @@ open class StateStoreViewController<State: Equatable, Action>: UIViewController 
   /// - Parameter store: The store to use with the view controller.
   ///
   /// - Returns: A new view controller.
-  public init(store: Store<State, Action>) {
+  public init(store: Store) {
     self.store = store
     self.viewStore = ViewStore(store)
     super.init(nibName: nil, bundle: nil)
@@ -52,6 +55,6 @@ open class StateStoreViewController<State: Equatable, Action>: UIViewController 
   /// State configuration happens on `viewWillAppear` and all observations are cleared on `viewDidDisappear`.
   ///
   /// - Parameter viewStore: The view store to observe.
-  open func configureStateObservation(on viewStore: ViewStore<State, Action>) { }
+  open func configureStateObservation(on viewStore: ViewStore) { }
 
 }
