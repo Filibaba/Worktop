@@ -6,13 +6,16 @@ import UIKit
 /// It removes much of the boiler plate involved with creating a custom control subclass.
 open class StateStoreControl<State: Equatable, Action>: UIControl {
 
+  public typealias Store = ComposableArchitecture.Store<State, Action>
+  public typealias ViewStore = ComposableArchitecture.ViewStore<State, Action>
+
   // MARK: Properties
 
   /// Any current store for this control.
-  public var store: Store<State, Action>
+  public var store: Store
 
   /// Any current view store for this control.
-  public var viewStore: ViewStore<State, Action>
+  public var viewStore: ViewStore
 
   /// A place to store cancallables for state subscriptions.
   public var cancellables: Set<AnyCancellable> = []
@@ -24,7 +27,7 @@ open class StateStoreControl<State: Equatable, Action>: UIControl {
   /// - Parameter store: The store that manages the state.
   ///
   /// - Returns: A new state store control
-  public init(store: Store<State, Action>) {
+  public init(store: Store) {
     self.store = store
     self.viewStore = ViewStore(store)
     super.init(frame: .zero)
@@ -39,7 +42,7 @@ open class StateStoreControl<State: Equatable, Action>: UIControl {
   /// Override this method to configure state observation.
   ///
   /// - Parameter viewStore: The view store to observe.
-  open func configureStateObservation(on viewStore: ViewStore<State, Action>) { }
+  open func configureStateObservation(on viewStore: ViewStore) { }
 
   /// Override this method to setup views when a cell is created.
   open func configureControl() { }

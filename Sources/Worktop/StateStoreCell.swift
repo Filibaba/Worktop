@@ -6,13 +6,16 @@ import UIKit
 /// much of the boiler plate involved with creating a custom cell subclass.
 open class StateStoreCell<State: Equatable, Action>: UICollectionViewCell {
 
+  public typealias Store = ComposableArchitecture.Store<State, Action>
+  public typealias ViewStore = ComposableArchitecture.ViewStore<State, Action>
+
   // MARK: Properties
 
   /// Any current store for this cell.
-  public var store: Store<State, Action>?
+  public var store: Store?
 
   /// Any current view store for this cell.
-  public var viewStore: ViewStore<State, Action>?
+  public var viewStore: ViewStore?
 
   /// A place to store cancallables for state subscriptions.
   public var cancellables: Set<AnyCancellable> = []
@@ -31,7 +34,7 @@ open class StateStoreCell<State: Equatable, Action>: UICollectionViewCell {
   /// Configure the cell with the given store.
   ///
   /// - Parameter store: The store to use for the cell.
-  public func configure(with store: Store<State, Action>) {
+  public func configure(with store: Store) {
     let viewStore = ViewStore(store)
     self.store = store
     self.viewStore = viewStore
@@ -52,7 +55,7 @@ open class StateStoreCell<State: Equatable, Action>: UICollectionViewCell {
   /// Override this method to configure state observation whenever the cell is configured with a new store.
   ///
   /// - Parameter viewStore: The view store that was created as part of the configuration.
-  open func configureStateObservation(on viewStore: ViewStore<State, Action>) { }
+  open func configureStateObservation(on viewStore: ViewStore) { }
 
   /// Override this method to setup views when a cell is created.
   open func setupViews() { }
