@@ -61,6 +61,6 @@ open class StateStoreViewController<State: Equatable, Action>: UIViewController 
   /// - Parameter viewStore: The view store to observe.
   open func configureStateObservation(on viewStore: ViewStore) { }
 
-  open func configurePersistingStateObservation(on viewStore: ViewStore) -> Set<AnyCancellable> { }
+  open func configurePersistingStateObservation(on viewStore: ViewStore) -> Set<AnyCancellable> { [] }
 
 }
