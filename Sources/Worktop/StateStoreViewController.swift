@@ -19,6 +19,9 @@ open class StateStoreViewController<State: Equatable, Action>: UIViewController 
   /// Keeps track of subscriptions.
   open var cancellables: Set<AnyCancellable> = []
 
+  /// Subscriptions that persist even when the view controller is not visible
+  open var persistingCancellables: Set<AnyCancellable> = []
+
   // MARK: Initialization
 
   /// Creates a new store view controller with the given store.
@@ -30,6 +33,7 @@ open class StateStoreViewController<State: Equatable, Action>: UIViewController 
     self.store = store
     self.viewStore = ViewStore(store)
     super.init(nibName: nil, bundle: nil)
+    persistingCancellables = configurePersistingStateObservation(on: viewStore)
   }
 
   @available(*, unavailable) public required init?(coder: NSCoder) {
@@ -56,5 +60,7 @@ open class StateStoreViewController<State: Equatable, Action>: UIViewController 
   ///
   /// - Parameter viewStore: The view store to observe.
   open func configureStateObservation(on viewStore: ViewStore) { }
+
+  open func configurePersistingStateObservation(on viewStore: ViewStore) -> Set<AnyCancellable> { }
 
 }
