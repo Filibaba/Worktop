@@ -32,7 +32,7 @@ open class OptionalStateStoreView<State: Equatable, Action>: UIView {
     self.viewStore = store.map(ViewStore.init)
     super.init(frame: frame)
     configureView()
-    if let store = store {
+    if let viewStore = viewStore {
       configureStateObservation(on: viewStore)
     }
   }
