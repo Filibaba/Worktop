@@ -27,7 +27,7 @@ open class OptionalStateStoreView<State: Equatable, Action>: UIView {
   /// - Parameter store: The store to use with the view.
   ///
   /// - Returns: A new view controller.
-  public init(frame: CGRect = .zero, store: Store? = nil) {
+  required public init(frame: CGRect = .zero, store: Store? = nil) {
     self.store = store
     self.viewStore = store.map(ViewStore.init)
     super.init(frame: frame)
