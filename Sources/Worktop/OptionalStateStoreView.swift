@@ -45,8 +45,10 @@ open class OptionalStateStoreView<State: Equatable, Action>: UIView {
 
   /// Sets a store for the view and resets cancellables.
   ///
+  /// Make sure to call super if overriden.
+  ///
   /// - Parameter store: A new stor, or nil.
-  public func setStore(_ store: Store?) {
+  open func setStore(_ store: Store?) {
     cancellables.removeAll()
     self.store = store
     if let store = store {
