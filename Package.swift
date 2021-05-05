@@ -1,4 +1,4 @@
-// swift-tools-version:5.3
+// swift-tools-version:5.4
 
 import PackageDescription
 
@@ -11,7 +11,7 @@ let package = Package(
     .library(name: "Worktop", targets: ["Worktop"]),
   ],
   dependencies: [
-    .package(url: "https://github.com/pointfreeco/swift-composable-architecture/", from: "0.17.0"),
+    .package(url: "https://github.com/pointfreeco/swift-composable-architecture/", from: "0.18.0"),
   ],
   targets: [
     .target(name: "Worktop", dependencies: [
