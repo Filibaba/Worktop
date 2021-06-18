@@ -46,9 +46,17 @@ public extension ViewStore {
   }
 }
 
-@_functionBuilder public struct MenuBuilder {
+@resultBuilder public struct MenuBuilder {
   public static func buildBlock(_ actions: UIAction...) -> [UIAction] {
     return actions
+  }
+
+  public static func buildEither(first component: UIAction) -> UIAction {
+    component
+  }
+
+  public static func buildEither(second component: UIAction) -> UIAction {
+    component
   }
 }
 
