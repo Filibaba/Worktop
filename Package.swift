@@ -11,7 +11,7 @@ let package = Package(
     .library(name: "Worktop", targets: ["Worktop"]),
   ],
   dependencies: [
-    .package(url: "https://github.com/pointfreeco/swift-composable-architecture/", from: "0.25.1"),
+    .package(url: "https://github.com/pointfreeco/swift-composable-architecture/", from: "0.28.1"),
   ],
   targets: [
     .target(name: "Worktop", dependencies: [
